@@ -10,8 +10,15 @@ object CastilloBuild extends Build with UniversalKeys {
    */
   lazy val root =
     project.in(file("."))
-    .settings(commonSettings:_*)
+    .settings(serverSettings:_*)
     .enablePlugins(PlayScala)
+
+  /**
+   * The settings for the server module
+   */
+  lazy val serverSettings = commonSettings ++ Seq(
+    libraryDependencies ++= Dependencies.serverDeps
+  )
 
   /**
    * The setting that will be applied to all sub projects
@@ -22,4 +29,14 @@ object CastilloBuild extends Build with UniversalKeys {
     name := "castillo",
     scalaVersion := "2.11.4"
   )
+
+  /**
+   * A simple container object for the dependencies.
+   */
+  object Dependencies {
+
+    lazy val serverDeps = Seq(
+      "com.newrelic.agent.java" % "newrelic-agent" % Versions.newRelic
+    )
+  }
 }
