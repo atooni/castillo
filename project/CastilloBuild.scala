@@ -5,11 +5,22 @@ import Keys._
 
 object CastilloBuild extends Build with UniversalKeys {
 
+  val appName = "castillo"
+
   /**
-   * Define the root project as a Play application.
+   * Define the root project as an aggregation of the subprojects.
    */
+
   lazy val root =
     project.in(file("."))
+    .settings(commonSettings:_*)
+    .aggregate(server)
+
+  /**
+   * Define the server project as a Play application.
+   */
+  lazy val server =
+    project.in(file("server"))
     .settings(serverSettings:_*)
     .enablePlugins(PlayScala)
 
@@ -17,6 +28,7 @@ object CastilloBuild extends Build with UniversalKeys {
    * The settings for the server module
    */
   lazy val serverSettings = commonSettings ++ Seq(
+    name := s"$appName-server",
     libraryDependencies ++= Dependencies.serverDeps
   )
 
