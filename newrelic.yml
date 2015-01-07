@@ -12,43 +12,9 @@
 common: &default_settings
   # ============================== LICENSE KEY ===============================
 
-  # You must specify the license key associated with your New Relic
-  # account.  This key binds your Agent's data to your account in the
-  # New Relic service.
+  # The license key will be passed to the application via a system property
   #license_key: fooo
 
-  # Agent Enabled (Ruby/Rails Only)
-  # Use this setting to force the agent to run or not run.
-  # Default is 'auto' which means the agent will install and run only
-  # if a valid dispatcher such as Mongrel is running.  This prevents
-  # it from running with Rake or the console.  Set to false to
-  # completely turn the agent off regardless of the other settings.
-  # Valid values are true, false and auto.
-  #
-  # agent_enabled: auto
-
-  # Application Name Set this to be the name of your application as
-  # you'd like it show up in New Relic. The service will then auto-map
-  # instances of your application into an "application" on your
-  # dashboard page. If you want to map this instance into multiple
-  # apps, like "AJAX Requests" and "All UI" then specify a semicolon
-  # separated list of up to three distinct names, or a yaml list.
-  # Defaults to the capitalized RAILS_ENV or RACK_ENV (i.e.,
-  # Production, Staging, etc)
-  #
-  # Example:
-  #
-  #   app_name:
-  #       - Ajax Service
-  #       - All Services
-  #
-  # Caution: If you change this name, a new application will appear in the New
-  # Relic user interface with the new name, and data will stop reporting to the
-  # app with the old name.
-  #
-  # See https://newrelic.com/docs/site/renaming-applications for more details
-  # on renaming your New Relic applications.
-  #
   app_name: Castillo
 
   # When "true", the agent collects performance data about your
@@ -192,7 +158,7 @@ development:
   <<: *default_settings
   # Turn on communication to New Relic service in development mode
   monitor_mode: true
-  app_name: My Application (Development)
+  app_name: Castillo (Development)
 
   # Rails Only - when running in Developer Mode, the New Relic Agent will
   # present performance information on the last 100 transactions you have
@@ -221,4 +187,4 @@ production:
 staging:
   <<: *default_settings
   monitor_mode: true
-  app_name: My Application (Staging)
+  app_name: Castillo (Staging)
