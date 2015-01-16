@@ -1,7 +1,10 @@
 import com.typesafe.sbt.packager.universal.UniversalKeys
+import com.typesafe.sbt.web.Import._
+import com.typesafe.sbt.less.Import._
 import play._
 import sbt._
 import Keys._
+
 
 object CastilloBuild extends Build with UniversalKeys {
 
@@ -30,7 +33,8 @@ object CastilloBuild extends Build with UniversalKeys {
    */
   lazy val serverSettings = commonSettings ++ Seq(
     name := s"$appName-server",
-    libraryDependencies ++= Dependencies.serverDeps
+    libraryDependencies ++= Dependencies.serverDeps,
+    includeFilter in (Assets, LessKeys.less) := "__main.less"
   )
 
   /**
