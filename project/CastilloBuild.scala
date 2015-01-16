@@ -22,6 +22,7 @@ object CastilloBuild extends Build with UniversalKeys {
   lazy val server =
     project.in(file("server"))
     .settings(serverSettings:_*)
+    .settings(sharedDirSettings:_*)
     .enablePlugins(PlayScala)
 
   /**
@@ -30,6 +31,14 @@ object CastilloBuild extends Build with UniversalKeys {
   lazy val serverSettings = commonSettings ++ Seq(
     name := s"$appName-server",
     libraryDependencies ++= Dependencies.serverDeps
+  )
+
+  /**
+   * Here we collect the settings for the shared source directories.
+   */
+  lazy val sharedDirSettings = Seq(
+    unmanagedSourceDirectories in Compile += 
+      baseDirectory.value / "shared" / "main" / "scala"
   )
 
   /**
