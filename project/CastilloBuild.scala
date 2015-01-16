@@ -46,9 +46,9 @@ object CastilloBuild extends Build with UniversalKeys {
    */
   lazy val commonSettings = Seq(
     organization := "de.woq",
-    version := "1.0-SNAPSHOT",
+    version := Versions.app,
     name := "castillo",
-    scalaVersion := "2.11.4"
+    scalaVersion := Versions.scala
   )
 
   /**
@@ -57,7 +57,9 @@ object CastilloBuild extends Build with UniversalKeys {
   object Dependencies {
 
     lazy val serverDeps = Seq(
-      "com.newrelic.agent.java" % "newrelic-agent" % Versions.newRelic
+      "com.newrelic.agent.java" % "newrelic-agent" % Versions.newRelic,
+    
+      "org.scalatest" %% "scalatest" % Versions.scalaTest % "test"
     )
   }
 }
