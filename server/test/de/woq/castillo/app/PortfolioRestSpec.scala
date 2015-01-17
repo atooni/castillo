@@ -27,7 +27,8 @@ class PortfolioRestSpec extends WordSpec
     duration = 5
   )
 
-  implicit def jsWriteable[A](
+  // Tranform a Writes[A] into a Writable[A]
+  implicit private def jsWriteable[A](
     implicit wa: Writes[A], wjs: Writeable[JsValue]
   ): Writeable[A] = wjs.map(a => Json.toJson(a))
 

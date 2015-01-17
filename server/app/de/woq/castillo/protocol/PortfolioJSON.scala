@@ -25,6 +25,9 @@ object PortfolioJSON {
     ( __  \ "details").read[SeminarDetails]
   )(Seminar)
 
+  
+  // define the Content-Type for Seminars and SeminarDetails as JSON
+  
   implicit def contentTypeOf_Seminar(implicit codec: Codec): ContentTypeOf[Seminar] = {
     ContentTypeOf[Seminar](Some(ContentTypes.JSON))
   }
@@ -32,5 +35,4 @@ object PortfolioJSON {
   implicit def contentTypeOf_SeminarDetails(implicit codec: Codec): ContentTypeOf[SeminarDetails] = {
     ContentTypeOf[SeminarDetails](Some(ContentTypes.JSON))
   }
-
 }
