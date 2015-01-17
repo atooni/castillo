@@ -3,7 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET           /                     controllers.Application.index
+
+# The routes for the seminar portfolio
+GET           /portfolio            controllers.PortfolioController.list
+POST          /portfolio            controllers.PortfolioController.create
+GET           /portfolio/:id        controllers.PortfolioController.details(id : Long)
+PUT           /portfolio/:id        controllers.PortfolioController.update(id: Long)
+DELETE        /portfolio/:id        controllers.PortfolioController.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file)
+GET           /assets/*file         controllers.Assets.versioned(path="/public", file)
