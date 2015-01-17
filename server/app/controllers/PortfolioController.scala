@@ -25,7 +25,7 @@ object PortfolioController extends Controller {
 
   def update(id: Long) = Action(parse.json) {
     implicit request => request.body.validate[Seminar] match {
-      case JsSuccess(course, _) => portfolio.update(course) match {
+      case JsSuccess(seminar, _) => portfolio.update(seminar) match {
         case Some(c) => Ok(Json.toJson(c))
         case None => NotFound
       }

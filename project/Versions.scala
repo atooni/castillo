@@ -8,4 +8,5 @@ object Versions {
   val scalajsDom      = "0.6"
   val scalajsReact    = "0.6.1"
   val scalaTest       = "2.2.0"
+  val scalaTestPlus   = "1.2.0"
 }

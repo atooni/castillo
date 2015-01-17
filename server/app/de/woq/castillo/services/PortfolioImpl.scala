@@ -20,7 +20,10 @@ object PortfolioImpl extends Portfolio {
     Some(seminar)
   }
 
-  override def update(seminar : Seminar) = seminars.replace(seminar.id, seminar.copy())
+  override def update(seminar : Seminar) = seminars.replace(seminar.id, seminar) match {
+    case None => None
+    case _ => Some(seminar)
+  }
 
   override def delete(id: Long): Option[Seminar] = seminars.remove(id)
 
