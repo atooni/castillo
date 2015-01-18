@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+set -ev
 
 function checkRC {
   if [ $1 != 0 ]; then 
@@ -8,14 +10,10 @@ function checkRC {
 }
 
 sbt clean coverage test
-checkRC $?
 
 sbt coverageReport
-checkRC $?
 
 sbt coverageAggregate
-checkRC $?
 
 sbt codacyCoverage
-checkRC $?
 
