@@ -28,14 +28,14 @@ class PortfolioRestSpec extends WordSpec
   )
 
   // Tranform a Writes[A] into a Writable[A]
-  implicit private def jsWriteable[A](
+  implicit private[this] def jsWriteable[A](
     implicit wa: Writes[A], wjs: Writeable[JsValue]
   ): Writeable[A] = wjs.map(a => Json.toJson(a))
   
-  private def executeWsRequest(request : WSRequestHolder) =  
+  private[this] def executeWsRequest(request : WSRequestHolder) =
     Await.result(request.execute(), 1.second)
   
-  private def createSeminar(details : SeminarDetails) = {
+  private[this] def createSeminar(details : SeminarDetails) = {
     
     val result = executeWsRequest(
       WS.url(portfolioBase)
@@ -47,7 +47,7 @@ class PortfolioRestSpec extends WordSpec
     validateJSON[Seminar](result.body)
   }
   
-  private def validateJSON[T](json : String)(implicit reads: Reads[T]) : Option[T] = {
+  private[this] def validateJSON[T](json : String)(implicit reads: Reads[T]) : Option[T] = {
     val result = Json.fromJson[T](Json.parse(json)).asOpt
     
     result match { 
