@@ -28,11 +28,11 @@ object PortfolioJSON {
   
   // define the Content-Type for Seminars and SeminarDetails as JSON
   
-  implicit def contentTypeOf_Seminar(implicit codec: Codec): ContentTypeOf[Seminar] = {
+  implicit def contentTypeOfSeminar(implicit codec: Codec): ContentTypeOf[Seminar] = {
     ContentTypeOf[Seminar](Some(ContentTypes.JSON))
   }
 
-  implicit def contentTypeOf_SeminarDetails(implicit codec: Codec): ContentTypeOf[SeminarDetails] = {
+  implicit def contentTypeOfSeminarDetails(implicit codec: Codec): ContentTypeOf[SeminarDetails] = {
     ContentTypeOf[SeminarDetails](Some(ContentTypes.JSON))
   }
 }
