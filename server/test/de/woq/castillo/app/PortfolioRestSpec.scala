@@ -105,8 +105,8 @@ class PortfolioRestSpec extends WordSpec
 
       result.status should be (OK)
       
-      val seminar = Json.fromJson[Seminar](Json.parse(result.body))
-      seminar.isSuccess should be (true)
+      val seminar = validateJSON[Seminar](result.body)
+      seminar should not be (None)
       seminar.foreach(_.id should be (1))
 
       executeWsRequest(WS.url(s"$portfolioBase/1").withMethod("GET")).status should be (NOT_FOUND)
@@ -127,41 +127,30 @@ class PortfolioRestSpec extends WordSpec
           )
 
           update.status should be (OK)
-          val updated = Json.fromJson[Seminar](Json.parse(update.body))
-          updated.isSuccess should be (true)
-          updated.get.details should be (details.copy(duration = 7))
+          val updated = validateJSON[Seminar](update.body)
+          updated should not be (None)
+          updated.foreach(_.details should be (details.copy(duration = 7)))
       }
     }
 
     "fail if updating the seminar with wrong details" in {
-      val result = Await.result(
-        WS.url(portfolioBase)
-          .withBody[SeminarDetails](details)
-          .withMethod("POST")
-          .execute(),
-        1.second
-      )
-
-      result.status should be (OK)
-
-      val seminar = Json.fromJson[Seminar](Json.parse(result.body))
-      seminar.isSuccess should be (true)
-      seminar.get.details should be (details)
-
-      val update = Await.result(
-        WS.url(s"$portfolioBase/${seminar.get.id}").put[Seminar](
-          seminar.get.copy(details = details.copy(duration = 0))
-        ), 1.second
-      ).status should be (BAD_REQUEST)
+      createSeminar(details) match {
+        case None => fail("Seminar for update not created")
+        case Some(s) =>
+          executeWsRequest(
+            WS.url(s"$portfolioBase/${s.id}")
+              .withBody[Seminar](s.copy(details = details.copy(duration = 0)))
+              .withMethod("PUT")
+          ).status should be (BAD_REQUEST)
+      }
     }
 
     "return HTTP 404 if trying to update a non-existing seminar" in {
-      Await.result(
-        WS.url(s"$portfolioBase/${Long.MaxValue}").put[Seminar](
-          Seminar(Long.MaxValue, details = details.copy(duration = 7))
-        ), 1.second
+      executeWsRequest(
+        WS.url(s"$portfolioBase/${Long.MaxValue}")
+          .withBody[Seminar](Seminar(Long.MaxValue, details))
+          .withMethod("PUT")
       ).status should be (NOT_FOUND)
     }
   }
-
 }
