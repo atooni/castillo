@@ -52,7 +52,7 @@ class PortfolioRestSpec extends WordSpec
     
     result match { 
       case None => fail("Failed to validate JSON response")
-      case Some(r) => Some(r)
+      case _ =>
     }
     
     result
@@ -63,8 +63,7 @@ class PortfolioRestSpec extends WordSpec
     "provide the list of available seminars at /portfolio" in {
       val result = executeWsRequest(WS.url(portfolioBase).withMethod("GET"))
       result.status should be (OK)
-      val seminars = validateJSON[Seq[Seminar]](result.body) 
-      seminars.foreach(_ should have size(1))
+      validateJSON[Seq[Seminar]](result.body)
     }
     
     "allow to retrieve an existing seminar" in {
@@ -72,7 +71,7 @@ class PortfolioRestSpec extends WordSpec
       result.status should be (OK)
       
       val seminar = validateJSON[Seminar](result.body)
-      seminar should not be (None)
+      seminar should not be None
       
       seminar.foreach(_ should be (Seminar(1, SeminarDetails(
         title = "Creating Play applications with a ScalaJS frontend",
@@ -87,7 +86,7 @@ class PortfolioRestSpec extends WordSpec
     }
     
     "allow to create a seminar" in {
-      createSeminar(details) should not be (None)
+      createSeminar(details) should not be None
     }
     
     "fail to create a seminar with wrong details" in {
@@ -106,7 +105,7 @@ class PortfolioRestSpec extends WordSpec
       result.status should be (OK)
       
       val seminar = validateJSON[Seminar](result.body)
-      seminar should not be (None)
+      seminar should not be None
       seminar.foreach(_.id should be (1))
 
       executeWsRequest(WS.url(s"$portfolioBase/1").withMethod("GET")).status should be (NOT_FOUND)
@@ -128,7 +127,7 @@ class PortfolioRestSpec extends WordSpec
 
           update.status should be (OK)
           val updated = validateJSON[Seminar](update.body)
-          updated should not be (None)
+          updated should not be None
           updated.foreach(_.details should be (details.copy(duration = 7)))
       }
     }
