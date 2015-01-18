@@ -5,3 +5,6 @@ jdk:
   - oraclejdk7
 env:
   - APP_SECRET=foo
+  - CODACY_PROJECT_TOKEN=78d6a746769540eab57adb8cabd5bb6c
+script:
+  - ./build.sh
