@@ -33,7 +33,7 @@ class PortfolioRestSpec extends WordSpec
   ): Writeable[A] = wjs.map(a => Json.toJson(a))
   
   private[this] def executeWsRequest(request : WSRequestHolder) =
-    Await.result(request.execute(), 1.second)
+    Await.result(request.execute(), 2.second)
   
   private[this] def createSeminar(details : SeminarDetails) = {
     
