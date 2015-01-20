@@ -4,9 +4,9 @@ scala:
 jdk:
 - oraclejdk7
 env:
-  matrix:
-  - APP_SECRET=foo CODACY_PROJECT_TOKEN=78d6a746769540eab57adb8cabd5bb6c
   global:
-    secure: UlwjADsOc7ZHGHhBgne6Z9GVuYym16sMuijuHQjfN73uBsf1XhjxYCKVTosJMMBT02Sd8jzSaqbi0mAg8lAMoFPYZzDNOO5TAidAwS6NMZoRN2Ox5DrG793vNuyc2Os22UQN/6wt9Upe2tbH8C7wr2lXSpTHf+lQaVQEU19nFog=
+  - secure: UlwjADsOc7ZHGHhBgne6Z9GVuYym16sMuijuHQjfN73uBsf1XhjxYCKVTosJMMBT02Sd8jzSaqbi0mAg8lAMoFPYZzDNOO5TAidAwS6NMZoRN2Ox5DrG793vNuyc2Os22UQN/6wt9Upe2tbH8C7wr2lXSpTHf+lQaVQEU19nFog=
+  - secure: YfMDmk2BNXglyZGW2S9ih4AWGIoP6iPwHeXMlsVXEHU+4E9MZfXoTmfb46tIrxsbVpRPamHgZJACuS0UZkb6ZQGz/+CgjiXwvtf9UtvaCLzaXjn7nt7qJIXJZwREG6MKt3VfMQldaJ6ppAfYiiJZ0DGDpIAvKRvJiPqBl3oxvzU=
+  - secure: c+6PvdXfHQDF471SRGj+tXiNRZFXP3PeXRYH4wi2UiLFWIBCGY0+XWn3y/JuKdfe9rPWd1mDvQI+Q4etKbzs00ViaIxBVDfey6dlxmCqD+SdwqA4subAKln/kF3qck8rt1i6ToozimW5Ps0Li5h1A3F1gCmi6OenfyMR/m/K2u8=
 script: ./build.sh
-after_success: "sbt coveralls"
+after_success: sbt coveralls codacyCoverage
