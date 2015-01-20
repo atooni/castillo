@@ -4,4 +4,12 @@
 
 # Castillo
 
-A web application built with Play, ScalaJS and ReactJS.
+A web application to manage seminars built with Play, ScalaJS and ReactJS.
+
+## The project is accompanied by a series of blog posts
+
+ * [Introduction](http://www.wayofquality.de/scala/play/scalajs/reactjs/play-scalajs-reactjs-webapp)
+ * [Initial Setup](http://www.wayofquality.de/scala/play/scalajs/reactjs/castillo-01-initial-setup/)
+ * [Exposing Business Objects](http://www.wayofquality.de/scala/play/scalajs/reactjs/castillo-02-business-object/)
+ * [Pimping up the toolchain](http://www.wayofquality.de/scala/play/scalajs/reactjs/castillo-03-pimping-up/)
+ 
