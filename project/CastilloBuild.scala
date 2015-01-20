@@ -62,6 +62,7 @@ object CastilloBuild extends Build with UniversalKeys {
 
     lazy val serverDeps = Seq(
       "com.newrelic.agent.java" % "newrelic-agent" % Versions.newRelic,
+      "org.webjars" % "bootstrap" % Versions.bootstrap,
       "org.scalatestplus" %% "play" % Versions.scalaTestPlus % "test"
     )
   }
