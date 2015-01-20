@@ -1,8 +1,12 @@
 language: scala
 scala:
-  - 2.11.4
+- 2.11.4
 jdk:
-  - oraclejdk7
+- oraclejdk7
 env:
+  matrix:
   - APP_SECRET=foo CODACY_PROJECT_TOKEN=78d6a746769540eab57adb8cabd5bb6c
+  global:
+    secure: UlwjADsOc7ZHGHhBgne6Z9GVuYym16sMuijuHQjfN73uBsf1XhjxYCKVTosJMMBT02Sd8jzSaqbi0mAg8lAMoFPYZzDNOO5TAidAwS6NMZoRN2Ox5DrG793vNuyc2Os22UQN/6wt9Upe2tbH8C7wr2lXSpTHf+lQaVQEU19nFog=
 script: ./build.sh
+after_success: "sbt coveralls"

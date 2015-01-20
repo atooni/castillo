@@ -8,5 +8,3 @@ sbt coverageReport
 
 sbt coverageAggregate
 
-sbt codacyCoverage
-
