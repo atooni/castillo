@@ -10,5 +10,3 @@ sbt coverageAggregate
 
 sbt codacyCoverage 
 
-sbt coveralls
-
