@@ -118,9 +118,7 @@ object CastilloBuild extends Build with UniversalKeys {
       "com.github.japgolly.scalajs-react" %%% "test" % "0.6.1" % "test",
       "com.github.japgolly.scalajs-react" %%% "ext-scalaz71" % "0.6.1",
       "org.scala-lang.modules.scalajs" %%% "scalajs-dom" % Versions.scalajsDom,
-      "com.lihaoyi" %%% "upickle" % "0.2.4",
       "com.scalatags" %%% "scalatags" % "0.4.0",
-      "com.scalarx" %%% "scalarx" % "0.2.6",
       "org.scala-lang.modules.scalajs" %%% "scalajs-jquery" % "0.6",
       "org.scala-lang.modules.scalajs" %% "scalajs-jasmine-test-framework" % scalaJSVersion % "test"
     ))
