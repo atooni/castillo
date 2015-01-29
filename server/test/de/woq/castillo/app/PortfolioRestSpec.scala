@@ -73,7 +73,7 @@ class PortfolioRestSpec extends WordSpec
       val seminar = validateJSON[Seminar](result.body)
       seminar should not be None
       
-      seminar.foreach(_ should be (Seminar(1, SeminarDetails(
+      seminar.foreach(_ should be (Seminar("1", SeminarDetails(
         title = "Creating Play applications with a ScalaJS frontend",
         description = "The title says it all",
         trainer = "andreas@wayofquality.de",
@@ -106,7 +106,7 @@ class PortfolioRestSpec extends WordSpec
       
       val seminar = validateJSON[Seminar](result.body)
       seminar should not be None
-      seminar.foreach(_.id should be (1))
+      seminar.foreach(_.id should be ("1"))
 
       executeWsRequest(WS.url(s"$portfolioBase/1").withMethod("GET")).status should be (NOT_FOUND)
     }
@@ -146,8 +146,8 @@ class PortfolioRestSpec extends WordSpec
 
     "return HTTP 404 if trying to update a non-existing seminar" in {
       executeWsRequest(
-        WS.url(s"$portfolioBase/${Long.MaxValue}")
-          .withBody[Seminar](Seminar(Long.MaxValue, details))
+        WS.url(s"$portfolioBase/${Long.MaxValue.toString}")
+          .withBody[Seminar](Seminar(Long.MaxValue.toString, details))
           .withMethod("PUT")
       ).status should be (NOT_FOUND)
     }

@@ -1,7 +1,7 @@
 package de.woq.castillo.model
 
 case class Seminar (
-  id          : Long,            // A unique identifier
+  id          : String,          // A unique identifier
   details     : SeminarDetails   // The seminar details
 )
 

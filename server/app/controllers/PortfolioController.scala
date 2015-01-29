@@ -23,7 +23,7 @@ object PortfolioController extends Controller {
     }
   }
 
-  def update(id: Long) = Action(parse.json) {
+  def update(id: String) = Action(parse.json) {
     implicit request => request.body.validate[Seminar] match {
       case JsSuccess(seminar, _) => portfolio.update(seminar) match {
         case Some(c) => Ok(Json.toJson(c))
@@ -33,14 +33,14 @@ object PortfolioController extends Controller {
     }
   }
 
-  def delete(id: Long) = Action {
+  def delete(id: String) = Action {
     portfolio.delete(id) match {
       case Some(course) => Ok(Json.toJson(course))
       case None => NotFound
     }
   }
 
-  def details(id: Long) = Action {
+  def details(id: String) = Action {
 
     portfolio.get(id) match {
       case Some(c) => Ok(Json.toJson(c))

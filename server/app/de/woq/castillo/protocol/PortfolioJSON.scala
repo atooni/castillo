@@ -21,7 +21,7 @@ object PortfolioJSON {
   implicit val writesSeminar = Json.writes[Seminar]
 
   implicit val readsSeminar : Reads[Seminar] = (
-    ( __ \ "id").read(min[Long](1)) and
+    ( __ \ "id").read(minLength[String](1)) and
     ( __  \ "details").read[SeminarDetails]
   )(Seminar)
 
