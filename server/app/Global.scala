@@ -16,6 +16,13 @@ object Global extends GlobalSettings {
         trainer = "andreas@wayofquality.de",
         duration = 5
       ))
+
+      portfolio.create(SeminarDetails(
+        title = "Using Scala in an OSGi world",
+        description = "An odd use case for Scala and Akka",
+        trainer = "andreas@wayofquality.de",
+        duration = 5
+      ))
     }
   }
 }
