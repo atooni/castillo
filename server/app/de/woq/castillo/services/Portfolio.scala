@@ -38,12 +38,12 @@ trait Portfolio {
    * @return <code>Some(s)</code> if s has been found and successfully deleted, <code>None</code>
    *         if the seminar couldn't found or couldn't be deleted.          
    */
-  def delete(id: Long) : Option[Seminar]
+  def delete(id: String) : Option[Seminar]
 
   /**
    * Retrieve a seminar using the parameter <code>id</code> as a key.
    * @param id
    * @return <code>Some(s)</code> if s has been found, <code>None</code> otherwise.
    */
-  def get(id: Long) : Option[Seminar]
+  def get(id: String) : Option[Seminar]
 }

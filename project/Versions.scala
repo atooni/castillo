@@ -10,4 +10,5 @@ object Versions {
   val scalajsReact    = "0.6.1"
   val scalaTest       = "2.2.0"
   val scalaTestPlus   = "1.2.0"
+  val upickle         = "0.2.5"
 }
