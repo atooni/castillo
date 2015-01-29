@@ -12,4 +12,5 @@ A web application to manage seminars built with Play, ScalaJS and ReactJS.
  * [Initial Setup](http://www.wayofquality.de/scala/play/scalajs/reactjs/castillo-01-initial-setup/)
  * [Exposing Business Objects](http://www.wayofquality.de/scala/play/scalajs/reactjs/castillo-02-business-object/)
  * [Pimping up the toolchain](http://www.wayofquality.de/scala/play/scalajs/reactjs/castillo-03-pimping-up/)
+ * [Initial Web Client](http://www.wayofquality.de/scala/play/scalajs/reactjs/castillo-04-Initial-Webclient/)
  
