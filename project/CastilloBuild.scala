@@ -2,6 +2,7 @@ import com.typesafe.sbt.packager.universal.UniversalKeys
 import com.typesafe.sbt.web.Import._
 import com.typesafe.sbt.less.Import._
 import org.scalajs.sbtplugin.ScalaJSPlugin
+import org.scalajs.sbtplugin.ScalaJSPlugin.AutoImport._
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import play._
 import sbt._
@@ -69,7 +70,8 @@ object CastilloBuild extends Build with UniversalKeys {
    */
   lazy val clientSettings = commonSettings ++ Seq(
     name := s"$appName-client",
-    libraryDependencies ++= Dependencies.clientDeps.value
+    libraryDependencies ++= Dependencies.clientDeps.value,
+    jsDependencies += RuntimeDOM % "test"
   ) ++ sharedDirSettings
 
   /**
