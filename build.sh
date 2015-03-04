@@ -2,11 +2,11 @@
 
 set -ev
 
-sbt clean coverage test
+sbt clean test stage
 
-sbt coverageReport
+#sbt coverageReport
 
-sbt coverageAggregate
+#sbt coverageAggregate
 
-sbt codacyCoverage 
+#sbt codacyCoverage
 
