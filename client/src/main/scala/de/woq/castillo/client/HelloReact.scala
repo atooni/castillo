@@ -1,10 +1,10 @@
 package de.woq.castillo.client
 
 import de.woq.castillo.model.Seminar
-import japgolly.scalajs.react.vdom.ReactVDom.all._
+import japgolly.scalajs.react.vdom.all._
 import japgolly.scalajs.react.{React, ReactComponentB}
 import org.scalajs.dom
-import org.scalajs.dom.extensions.Ajax
+import org.scalajs.dom.ext.Ajax
 
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.runNow
 import scala.scalajs.js.JSApp

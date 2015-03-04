@@ -1,12 +1,11 @@
 import com.typesafe.sbt.packager.universal.UniversalKeys
 import com.typesafe.sbt.web.Import._
 import com.typesafe.sbt.less.Import._
-import scala.scalajs.sbtplugin.ScalaJSPlugin._
-import ScalaJSKeys._
+import org.scalajs.sbtplugin.ScalaJSPlugin
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import play._
 import sbt._
 import Keys._
-
 
 object CastilloBuild extends Build with UniversalKeys {
 
@@ -44,8 +43,8 @@ object CastilloBuild extends Build with UniversalKeys {
    */
   lazy val client =
     project.in(file("client"))
+    .enablePlugins(ScalaJSPlugin)
     .settings(clientSettings:_*)
-    .settings(scalaJSSettings:_*)
 
   /**
    * The settings for the server module
@@ -60,7 +59,7 @@ object CastilloBuild extends Build with UniversalKeys {
     includeFilter in (Assets, LessKeys.less) := "__main.less"
   ) ++ (
     // ask scalajs project to put its outputs in scalajsOutputDir
-    Seq(packageExternalDepsJS, packageInternalDepsJS, packageExportedProductsJS, packageLauncher, fastOptJS, fullOptJS) map { packageJSKey =>
+    Seq(fastOptJS, fullOptJS) map { packageJSKey =>
       crossTarget in (client, Compile, packageJSKey) := scalajsOutputDir.value
     }
   ) ++ sharedDirSettings
@@ -94,7 +93,7 @@ object CastilloBuild extends Build with UniversalKeys {
    * We use this task to copy the source maps into the Play application
    */
   val copySourceMapsTask = Def.task {
-    val scalaFiles = (Seq(sharedScalaDir, client.base) ** ("*.scala")).get
+    val scalaFiles = (Seq(sharedScalaDir, client.base) ** "*.scala").get
     for (scalaFile <- scalaFiles) {
       val target = new File((classDirectory in Compile).value, scalaFile.getPath)
       IO.copyFile(scalaFile, target)
@@ -114,14 +113,13 @@ object CastilloBuild extends Build with UniversalKeys {
     ))
     
     lazy val clientDeps = Def.setting(Seq(
-      "com.github.japgolly.scalajs-react" %%% "core" % "0.6.1",
-      "com.github.japgolly.scalajs-react" %%% "test" % "0.6.1" % "test",
-      "com.github.japgolly.scalajs-react" %%% "ext-scalaz71" % "0.6.1",
+      "com.github.japgolly.scalajs-react" %%% "core" % Versions.scalajsReact,
+      "com.github.japgolly.scalajs-react" %%% "test" % Versions.scalajsReact % "test",
+      "com.github.japgolly.scalajs-react" %%% "ext-scalaz71" % Versions.scalajsReact,
       "com.lihaoyi" %%% "upickle" % Versions.upickle,
-      "org.scala-lang.modules.scalajs" %%% "scalajs-dom" % Versions.scalajsDom,
-      "com.scalatags" %%% "scalatags" % "0.4.0",
-      "org.scala-lang.modules.scalajs" %%% "scalajs-jquery" % "0.6",
-      "org.scala-lang.modules.scalajs" %% "scalajs-jasmine-test-framework" % scalaJSVersion % "test"
+      "org.scala-js" %%% "scalajs-dom" % Versions.scalajsDom,
+      "com.lihaoyi" %%% "scalatags" % Versions.scalaTags,
+      "be.doeraene" %%% "scalajs-jquery" % Versions.scalajsJQuery
     ))
   }
 }
